@@ -1,5 +1,5 @@
 {
-    "name": "quoter",
+    "name": "private-chat",
     "version": "1.0.0",
     "description": "Chat test task",
     "scripts": {
@@ -44,6 +44,8 @@
         "css-loader": "^0.28.7",
         "gulp-concat": "^2.6.1",
         "gulp-util": "^3.0.8",
+        "less": "^2.7.3",
+        "less-loader": "^4.0.5",
         "style-loader": "^0.19.0",
         "ts-loader": "^3.2.0",
         "typescript": "^2.6.2",

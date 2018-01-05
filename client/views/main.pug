@@ -6,4 +6,35 @@ block script
 
 block body
   body
-    div#content
+    .site-wrapper
+      .site-wrapper-inner
+        .cover-container
+          .masthead.clearfix
+            .inner
+              h3.masthead-brand Private Chat
+              nav
+                if !user
+                  ul.nav.masthead-nav
+                    li
+                      a(href='/auth/google')
+                        i.fa.fa-google-plus.margin-x-xs
+                        | google
+                    li
+                      a(href='/auth/vkontakte')
+                        i.fa.fa-vk.margin-x-xs
+                        | vk
+                    li
+                      a(href='#')
+                        i.fa.fa-user-circle-o.margin-x-xs
+                        | guest
+                if user
+                  .profile= user.name
+                  .sign-out
+                    i.fa.fa-exit.margin-x-xs
+                    a(href="/logout") sign out
+          .inner.cover
+            .lead#content
+
+          .mastfoot
+            .inner
+              p Private Chat template for sberbank

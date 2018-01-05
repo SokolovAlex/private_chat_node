@@ -16,7 +16,9 @@ const output = {
 
 // Add more files to copy to the dist folder (Eventually an assets folder)
 const toCopy = [
-    { from: './client/views', to: 'views' }
+    { from: './client/views', to: 'views' },
+    { from: './client/static/images', to: 'images' },
+    { from: './client/static/styles', to: 'styles' }
 ];
 
 const plugins = [
@@ -51,8 +53,14 @@ module.exports = {
                 loader: 'ts-loader'
             },
             {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                test: /(.css$|.less$)/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader?url=false" // translates CSS into CommonJS
+                }, {
+                    loader: "less-loader" // compiles Less to CSS
+                }]
             }
         ]
     },

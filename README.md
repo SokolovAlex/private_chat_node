@@ -15,9 +15,13 @@ examples
 https://codepen.io/FZambia/full/aOYoEw
 http://jsfiddle.net/FZambia/yG7Uw/
 
+
 cd ./centrifugo-...
 ./centrifugo --config=config.json
 Centrifugo should run on port 8000 with config like:
 {
   "secret": "secret"
 }
+
+tool for sqllite
+http://sqlitebrowser.org/
