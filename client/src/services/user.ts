@@ -1,9 +1,16 @@
+enum Roles {
+    None = 0,
+    Client = 1,
+    Operator = 2
+}
+
 interface User {
     name: string;
     avatar: string;
     createdAt: string;
     email: string;
     id: string;
+    role: number;
 }
 
 declare global {
@@ -29,6 +36,10 @@ class UserService{
         
     }
 
+    hasRole() {
+        return this.user.role !== Roles.None;
+    }
+
     isAuthorized() {
         return !!this.user;
     }
@@ -39,4 +50,4 @@ user = window.user;
 
 const userService = new UserService(user);
 
-export { userService };
+export { userService, Roles };

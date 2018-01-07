@@ -1,51 +1,68 @@
 webpackJsonp([0],{
 
-/***/ 28:
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(82);
+__webpack_require__(30);
 
 
 /***/ }),
 
-/***/ 82:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
-const ReactDOM = __webpack_require__(49);
-const user_1 = __webpack_require__(83);
-__webpack_require__(84);
+const ReactDOM = __webpack_require__(19);
+const user_1 = __webpack_require__(45);
+const footer_1 = __webpack_require__(89);
+const sign_in_1 = __webpack_require__(90);
+const selectRole_1 = __webpack_require__(91);
+__webpack_require__(46);
 const env = 'dev';
 if (env === 'dev') {
     console.info('development mode');
 }
 const user = user_1.userService.getUser();
-let content = user ?
-    React.createElement("h1", null,
-        "\u0421\u0430\u043B\u044E\u0442. \u041A\u0435\u043C \u0442\u044B \u0441\u0435\u0431\u044F \u0432\u0438\u0434\u0438\u0448\u044C, ",
-        user.name,
-        "?",
-        React.createElement("button", null, "\u041E\u043F\u0435\u0440\u0430\u0442\u043E\u0440"),
-        React.createElement("button", null, "\u044F - \u043A\u043B\u0438\u0435\u043D\u0442"))
-    :
-        React.createElement("h1", null, "Please, sign in.");
+let contentBody;
+if (user) {
+    contentBody = React.createElement(selectRole_1.SelectRole, null);
+}
+else {
+    contentBody = React.createElement("h1", null, "Please, sign in.");
+}
+let content = React.createElement("div", { className: "cover-container" },
+    React.createElement("div", { className: "masthead clearfix" },
+        React.createElement("div", { className: "inner" },
+            React.createElement("h3", { className: "masthead-brand" }, "Private Chat"),
+            React.createElement(sign_in_1.SignIn, null))),
+    React.createElement("div", { className: "inner cover" },
+        React.createElement("div", null,
+            React.createElement("div", { className: "lead" }, contentBody))),
+    React.createElement(footer_1.Footer, null));
 ReactDOM.render(content, document.getElementById('content'));
 
 
 /***/ }),
 
-/***/ 83:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var Roles;
+(function (Roles) {
+    Roles[Roles["None"] = 0] = "None";
+    Roles[Roles["Client"] = 1] = "Client";
+    Roles[Roles["Operator"] = 2] = "Operator";
+})(Roles || (Roles = {}));
+exports.Roles = Roles;
 class UserService {
     constructor(user) {
         this.setUser(user);
@@ -58,6 +75,9 @@ class UserService {
     }
     setRole() {
     }
+    hasRole() {
+        return this.user.role !== Roles.None;
+    }
     isAuthorized() {
         return !!this.user;
     }
@@ -69,13 +89,13 @@ exports.userService = userService;
 
 /***/ }),
 
-/***/ 84:
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(85);
+var content = __webpack_require__(47);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -83,7 +103,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(87)(content, options);
+var update = __webpack_require__(49)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -101,22 +121,22 @@ if(false) {
 
 /***/ }),
 
-/***/ 85:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(86)(undefined);
+exports = module.exports = __webpack_require__(48)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Oswald', sans-serif;\n}\n.container {\n  max-width: 1040px;\n}\na {\n  text-decoration: none;\n  color: #4e3c3e;\n  outline: none;\n}\na:hover {\n  text-decoration: none;\n}\n.q-title {\n  font-size: 28px;\n}\n.strech {\n  width: 100%;\n}\n.margin-y-sm {\n  margin: 20px 0;\n}\n.margin-y-xs {\n  margin: 10px 0;\n}\n.margin-x-sm {\n  margin: 0 20px;\n}\n.margin-x-xs {\n  margin: 0 10px;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Josefin Sans', sans-serif;\n  font-size: 20px;\n}\n.container {\n  max-width: 1040px;\n}\na {\n  text-decoration: none;\n  color: #4e3c3e;\n  outline: none;\n}\na:hover {\n  text-decoration: none;\n}\n.q-title {\n  font-size: 28px;\n}\n.strech {\n  width: 100%;\n}\n.margin-y-sm {\n  margin: 20px 0;\n}\n.margin-y-xs {\n  margin: 10px 0;\n}\n.margin-top-sm {\n  margin-top: 20px;\n}\n.margin-top-xs {\n  margin-top: 10px;\n}\n.margin-x-sm {\n  margin: 0 20px;\n}\n.margin-x-xs {\n  margin: 0 10px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 86:
+/***/ 48:
 /***/ (function(module, exports) {
 
 /*
@@ -199,7 +219,7 @@ function toComment(sourceMap) {
 
 /***/ }),
 
-/***/ 87:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -255,7 +275,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(88);
+var	fixUrls = __webpack_require__(50);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -572,7 +592,7 @@ function updateLink (link, options, obj) {
 
 /***/ }),
 
-/***/ 88:
+/***/ 50:
 /***/ (function(module, exports) {
 
 
@@ -666,6 +686,215 @@ module.exports = function (css) {
 };
 
 
+/***/ }),
+
+/***/ 89:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(2);
+class Footer extends React.Component {
+    render() {
+        return (React.createElement("div", { className: "mastfoot" },
+            React.createElement("div", { className: "mastfoot" },
+                React.createElement("p", null, "Private Chat template for sberbank"))));
+    }
+}
+exports.Footer = Footer;
+
+
+/***/ }),
+
+/***/ 90:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(2);
+const user_1 = __webpack_require__(45);
+__webpack_require__(92);
+class SignIn extends React.Component {
+    render() {
+        const user = user_1.userService.getUser();
+        let content = !user ?
+            React.createElement("nav", { className: "nav nav-masthead" },
+                React.createElement("a", { className: "nav-link", href: '/auth/google' },
+                    React.createElement("i", { className: "fa fa-google-plus margin-x-xs" }),
+                    "google"),
+                React.createElement("a", { className: "nav-link", href: '/auth/vkontakte' },
+                    React.createElement("i", { className: "fa fa-vk margin-x-xs" }),
+                    "vk"),
+                React.createElement("a", { className: "nav-link", href: '#' },
+                    React.createElement("i", { className: "fa fa-user-circle-o margin-x-xs" }),
+                    "guest"))
+            :
+                React.createElement("nav", { className: "nav nav-masthead" },
+                    React.createElement("div", { className: "profile" }, user.name),
+                    React.createElement("a", { className: "nav-link", href: '/logout' },
+                        React.createElement("i", { className: "fa fa-sign-out margin-x-xs" }),
+                        "sign out"));
+        return content;
+    }
+}
+exports.SignIn = SignIn;
+
+
+/***/ }),
+
+/***/ 91:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(2);
+const user_1 = __webpack_require__(45);
+__webpack_require__(94);
+const user = user_1.userService.getUser();
+class SelectRole extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.selected = user_1.Roles.Client;
+        this.roles = [
+            {
+                id: user_1.Roles.Client,
+                text: "Client"
+            },
+            {
+                id: user_1.Roles.Operator,
+                text: "Operator"
+            }
+        ];
+    }
+    check(roleId) {
+        if (this.selected === roleId) {
+            return React.createElement("i", { className: "fa-check fa margin-x-xs" });
+        }
+        return "";
+    }
+    render() {
+        return (React.createElement("div", null,
+            React.createElement("h1", null, "\u0421\u0430\u043B\u044E\u0442!"),
+            React.createElement("h3", null,
+                "\u041A\u0435\u043C \u0442\u044B \u0441\u0435\u0431\u044F \u0432\u0438\u0434\u0438\u0448\u044C, ",
+                user.name,
+                "?"),
+            React.createElement("div", { className: "row margin-top-sm select-role" },
+                React.createElement("div", { className: "btn-group col-sm-11" }, this.roles.map(role => {
+                    let selectedClass = this.selected === role.id ? 'selected-role' : '';
+                    selectedClass += " btn btn-secondary";
+                    return React.createElement("button", { className: selectedClass, onClick: this.selectRole.bind(this, role.id) },
+                        role.text,
+                        this.check(role.id));
+                })),
+                React.createElement("div", { className: "col-sm-1" },
+                    React.createElement("i", { className: "submit-role fa fa-arrow-right fa-2x" })))));
+    }
+    selectRole(roleId) {
+        this.selected = roleId;
+        this.forceUpdate();
+    }
+}
+exports.SelectRole = SelectRole;
+
+
+/***/ }),
+
+/***/ 92:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(49)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js?url=false!../../../../node_modules/less-loader/dist/cjs.js!./sign-in.less", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js?url=false!../../../../node_modules/less-loader/dist/cjs.js!./sign-in.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 93:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(48)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".profile {\n  padding: .25rem 0;\n  padding-right: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 94:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(95);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(49)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js?url=false!../../../../node_modules/less-loader/dist/cjs.js!./selectRole.less", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js?url=false!../../../../node_modules/less-loader/dist/cjs.js!./selectRole.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 95:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(48)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".select-role {\n  margin: auto;\n  width: 70%;\n}\n.select-role .btn {\n  font-size: 25px;\n}\n.select-role .selected-role {\n  background-color: grey;\n  box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.3);\n  color: white;\n}\n.submit-role {\n  cursor: pointer;\n}\n.submit-role:hover {\n  color: grey;\n}\n", ""]);
+
+// exports
+
+
 /***/ })
 
-},[28]);
+},[29]);

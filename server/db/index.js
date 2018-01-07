@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 const config = require('../config').db;
 
+const Roles = require('./Roles');
+
 let db = null;
 
 const init = () => {
@@ -19,6 +21,7 @@ const init = () => {
         hash: { type: Sequelize.STRING, allowNull: true },
         email: { type: Sequelize.STRING, allowNull: true },
         name: { type: Sequelize.STRING, allowNull: true },
+        role: { type: Sequelize.ENUM, values: [Roles.None, Roles.Client, Roles.Operator], defaultValue: Roles.None },
         password: { type: Sequelize.STRING, allowNull: true },
         salt: { type: Sequelize.STRING, allowNull: true },
         birthDate: { type: Sequelize.DATE, allowNull: true },
