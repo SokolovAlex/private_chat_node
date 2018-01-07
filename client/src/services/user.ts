@@ -1,3 +1,5 @@
+import { api } from './api';
+
 enum Roles {
     None = 0,
     Client = 1,
@@ -32,8 +34,8 @@ class UserService{
         return this.user;
     }
 
-    setRole() {
-        
+    saveRole(roleId: number) {
+        return api.saveRole(roleId, this.user.id);
     }
 
     hasRole() {

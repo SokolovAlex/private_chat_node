@@ -15,6 +15,7 @@ module.exports = (app) => {
 
     passport.deserializeUser(function(id, done) {
         User.findById(id).then(user => {
+            user.role = parseInt(user.role);
             done(null, user)
         });
     });

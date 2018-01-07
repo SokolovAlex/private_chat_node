@@ -7,14 +7,15 @@ const session = require('express-session');
 
 const boot = require('./boot');
 const config = require('./config');
-const auth = require('./api/auth');
+const authApi = require('./api/auth');
+const userApi = require('./api/user');
 const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', './public/views')
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(session({ secret: 'SECRET' }));
 app.use(express.static(__dirname + '/../public'));
 
@@ -23,7 +24,9 @@ app.use(passport.session());
 
 boot(app, passport);
 
-auth(app)
+authApi(app);
+
+app.use('/api', userApi());
 
 app.use('/', (req, res, next) => {
     return res.render('main', { user: req.isAuthenticated() ? req.user : null });
