@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import { userService, Roles } from '../../services/user';
+import { userService } from '../../services/user';
+import { navigation } from '../../services/navigation';
 
 import { Footer } from '../footer/footer';
 import { SignIn } from '../sign-in/sign-in';
@@ -13,24 +14,9 @@ import { Rooms } from '../rooms/rooms';
 
 import './app.less';
 
-declare var process: any;
-const env = process.env.NODE_ENV;
-
-if (env === 'dev') {
-    console.info('development mode');
-}
-
 const user = userService.getUser();
 
-if (!user) {
-  history.replaceState(null, 'welcome', '/')
-} else if (user.role === Roles.None) {
-  history.replaceState(null, 'select-role', '/select-role')
-} else if (user.role === Roles.Client) {
-  history.replaceState(null, 'chat', '/chat')
-} else if (user.role === Roles.Operator) {
-  history.replaceState(null, 'rooms', '/rooms')
-}
+navigation.start(user);
 
 export class App extends React.Component {
     render() {

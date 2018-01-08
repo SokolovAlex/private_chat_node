@@ -19,31 +19,31 @@ webpackJsonp([0],[
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(63);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(66);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(31);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(68);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(70);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_4__NavLink__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(73);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(74);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(33);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(18);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(79);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(80);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matchPath__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matchPath__ = __webpack_require__(81);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_11__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__withRouter__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__withRouter__ = __webpack_require__(82);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_12__withRouter__["a"]; });
 
 
@@ -94,7 +94,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(83);
+const api_1 = __webpack_require__(85);
 var Roles;
 (function (Roles) {
     Roles[Roles["None"] = 0] = "None";
@@ -267,7 +267,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(106);
+var	fixUrls = __webpack_require__(107);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -783,7 +783,9 @@ Link.contextTypes = {
 /* 43 */,
 /* 44 */,
 /* 45 */,
-/* 46 */
+/* 46 */,
+/* 47 */,
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -792,14 +794,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 const ReactDOM = __webpack_require__(27);
 const react_router_dom_1 = __webpack_require__(15);
-const app_1 = __webpack_require__(82);
+const app_1 = __webpack_require__(84);
 ReactDOM.render((React.createElement(react_router_dom_1.BrowserRouter, null,
     React.createElement(app_1.App, null))), document.getElementById('content'));
 
 
 /***/ }),
-/* 47 */,
-/* 48 */,
 /* 49 */,
 /* 50 */,
 /* 51 */,
@@ -812,7 +812,9 @@ ReactDOM.render((React.createElement(react_router_dom_1.BrowserRouter, null,
 /* 58 */,
 /* 59 */,
 /* 60 */,
-/* 61 */
+/* 61 */,
+/* 62 */,
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -822,7 +824,7 @@ ReactDOM.render((React.createElement(react_router_dom_1.BrowserRouter, null,
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createBrowserHistory__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createBrowserHistory__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_history_createBrowserHistory__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(18);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -879,8 +881,8 @@ BrowserRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (BrowserRouter);
 
 /***/ }),
-/* 62 */,
-/* 63 */
+/* 64 */,
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1193,7 +1195,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1203,7 +1205,7 @@ exports.default = createBrowserHistory;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createHashHistory__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createHashHistory__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_history_createHashHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_history_createHashHistory__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(18);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1259,7 +1261,7 @@ HashRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (HashRouter);
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1589,7 +1591,7 @@ var createHashHistory = function createHashHistory() {
 exports.default = createHashHistory;
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1600,8 +1602,8 @@ exports.default = createHashHistory;
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__["a" /* default */]);
 
 /***/ }),
-/* 67 */,
-/* 68 */
+/* 69 */,
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1682,9 +1684,9 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (NavLink);
 
 /***/ }),
-/* 69 */,
-/* 70 */,
-/* 71 */
+/* 71 */,
+/* 72 */,
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1695,7 +1697,7 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__["a" /* default */]);
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1706,11 +1708,11 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__["a" /* default */]);
 
 /***/ }),
-/* 73 */,
-/* 74 */,
 /* 75 */,
 /* 76 */,
-/* 77 */
+/* 77 */,
+/* 78 */,
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1721,7 +1723,7 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__["a" /* default */]);
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1732,7 +1734,7 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__["a" /* default */]);
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1743,7 +1745,7 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__["a" /* default */]);
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1754,8 +1756,8 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__["a" /* default */]);
 
 /***/ }),
-/* 81 */,
-/* 82 */
+/* 83 */,
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1764,30 +1766,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 const react_router_dom_1 = __webpack_require__(15);
 const user_1 = __webpack_require__(21);
-const footer_1 = __webpack_require__(102);
-const sign_in_1 = __webpack_require__(103);
-const select_role_1 = __webpack_require__(107);
-const welcome_1 = __webpack_require__(110);
-const chat_1 = __webpack_require__(115);
-const rooms_1 = __webpack_require__(116);
-__webpack_require__(111);
-const env = 'dev';
-if (env === 'dev') {
-    console.info('development mode');
-}
+const navigation_1 = __webpack_require__(122);
+const footer_1 = __webpack_require__(103);
+const sign_in_1 = __webpack_require__(104);
+const select_role_1 = __webpack_require__(108);
+const welcome_1 = __webpack_require__(111);
+const chat_1 = __webpack_require__(112);
+const rooms_1 = __webpack_require__(113);
+__webpack_require__(114);
 const user = user_1.userService.getUser();
-if (!user) {
-    history.replaceState(null, 'welcome', '/');
-}
-else if (user.role === user_1.Roles.None) {
-    history.replaceState(null, 'select-role', '/select-role');
-}
-else if (user.role === user_1.Roles.Client) {
-    history.replaceState(null, 'chat', '/chat');
-}
-else if (user.role === user_1.Roles.Operator) {
-    history.replaceState(null, 'rooms', '/rooms');
-}
+navigation_1.navigation.start(user);
 class App extends React.Component {
     render() {
         return (React.createElement("div", { className: "cover-container" },
@@ -1809,7 +1797,7 @@ exports.App = App;
 
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1830,8 +1818,6 @@ exports.api = api;
 
 
 /***/ }),
-/* 84 */,
-/* 85 */,
 /* 86 */,
 /* 87 */,
 /* 88 */,
@@ -1848,7 +1834,8 @@ exports.api = api;
 /* 99 */,
 /* 100 */,
 /* 101 */,
-/* 102 */
+/* 102 */,
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1866,7 +1853,7 @@ exports.Footer = Footer;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1874,8 +1861,16 @@ exports.Footer = Footer;
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 const user_1 = __webpack_require__(21);
-__webpack_require__(104);
+__webpack_require__(105);
 class SignIn extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.rolesLabels = {
+            [user_1.Roles.None]: "",
+            [user_1.Roles.Client]: "Client",
+            [user_1.Roles.Operator]: "Operator",
+        };
+    }
     render() {
         const user = user_1.userService.getUser();
         let content = !user ?
@@ -1891,24 +1886,31 @@ class SignIn extends React.Component {
                     "guest"))
             :
                 React.createElement("nav", { className: "nav nav-masthead" },
-                    React.createElement("div", { className: "profile" }, user.name),
+                    React.createElement("div", { className: "profile" },
+                        user.name,
+                        " ",
+                        this.roleLabel(user)),
                     React.createElement("a", { className: "nav-link", href: '/logout' },
                         React.createElement("i", { className: "fa fa-sign-out margin-x-xs" }),
                         "sign out"));
         return content;
+    }
+    roleLabel(user) {
+        const label = this.rolesLabels[user.role];
+        return label ? `(${label})` : '';
     }
 }
 exports.SignIn = SignIn;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(105);
+var content = __webpack_require__(106);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1933,7 +1935,7 @@ if(false) {
 }
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(23)(undefined);
@@ -1947,7 +1949,7 @@ exports.push([module.i, ".profile {\n  padding: .25rem 0;\n  padding-right: 10px
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports) {
 
 
@@ -2042,7 +2044,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2051,7 +2053,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(0);
 const react_router_dom_1 = __webpack_require__(15);
 const user_1 = __webpack_require__(21);
-__webpack_require__(108);
+__webpack_require__(109);
 const user = user_1.userService.getUser();
 class SelectRole extends React.Component {
     constructor() {
@@ -2106,13 +2108,13 @@ exports.SelectRole = SelectRole;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(109);
+var content = __webpack_require__(110);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2137,7 +2139,7 @@ if(false) {
 }
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(23)(undefined);
@@ -2151,7 +2153,7 @@ exports.push([module.i, ".select-role {\n  margin: auto;\n  width: 70%;\n}\n.sel
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2167,13 +2169,100 @@ exports.Welcome = Welcome;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+const user_1 = __webpack_require__(21);
+const centrifugo_1 = __webpack_require__(123);
+const user = user_1.userService.getUser();
+class ChatState {
+}
+class Chat extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            chatStarted: false
+        };
+    }
+    render() {
+        return (React.createElement("div", null, this.startButton()));
+    }
+    startButton() {
+        if (this.state.chatStarted) {
+            return React.createElement("button", { className: 'btn btn-primary', onClick: this.close.bind(this) }, "Say good buy and close connection");
+        }
+        else {
+            return React.createElement("button", { className: 'btn btn-primary', onClick: this.start.bind(this) }, "Ask question to operator");
+        }
+    }
+    start() {
+        this.setState({ chatStarted: true });
+        var centrifuge = centrifugo_1.centrifugoService.start();
+        var public_callbacks = {
+            "message": function (dataset) {
+                console.log("MSG ");
+                console.log('DATASET: ' + JSON.stringify(dataset));
+            },
+            "join": function (message) {
+                console.log('JOIN: ' + JSON.stringify(message));
+            },
+            "leave": function (message) {
+                console.log('LEAVE: ' + JSON.stringify(message));
+            },
+            "subscribe": function (context) {
+                console.log('SUBSCRIBE: ' + JSON.stringify(context));
+            },
+            "error": function (errContext) {
+                console.log('ERROR: ' + JSON.stringify(errContext));
+            },
+            "unsubscribe": function (context) {
+                console.log('UNSUBSCRIBE: ' + JSON.stringify(context));
+            }
+        };
+        var subscription = centrifuge.subscribe("public:test", public_callbacks);
+        centrifuge.on('connect', function (context) {
+            console.log("Connection (" + context.latency + "ms)");
+        });
+        centrifuge.on('disconnect', function (context) {
+            console.log("Disconnection: " + context.reason);
+        });
+        centrifuge.connect();
+    }
+    close() {
+        this.setState({ chatStarted: false });
+    }
+}
+exports.Chat = Chat;
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+class Rooms extends React.Component {
+    render() {
+        return (React.createElement("div", { className: "" }, "Rooms!!!!!!"));
+    }
+}
+exports.Rooms = Rooms;
+
+
+/***/ }),
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(112);
+var content = __webpack_require__(115);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2198,7 +2287,7 @@ if(false) {
 }
 
 /***/ }),
-/* 112 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(23)(undefined);
@@ -2212,38 +2301,77 @@ exports.push([module.i, "body {\n  font-family: 'Josefin Sans', sans-serif;\n  f
 
 
 /***/ }),
-/* 113 */,
-/* 114 */,
-/* 115 */
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-class Chat extends React.Component {
-    render() {
-        return (React.createElement("div", { className: "" }, "Chat!!!!!!"));
+const user_1 = __webpack_require__(21);
+const routes = {
+    welcome: '/',
+    selectRole: '/select-role',
+    chat: '/chat',
+    rooms: '/rooms',
+};
+class Navigation {
+    start(user) {
+        if (!user) {
+            history.replaceState(null, 'welcome', routes.welcome);
+        }
+        else if (user.role === user_1.Roles.None) {
+            history.replaceState(null, 'select-role', routes.selectRole);
+        }
+        else if (user.role === user_1.Roles.Client) {
+            history.replaceState(null, 'chat', routes.chat);
+        }
+        else if (user.role === user_1.Roles.Operator) {
+            history.replaceState(null, 'rooms', routes.rooms);
+        }
     }
 }
-exports.Chat = Chat;
+const navigation = new Navigation();
+exports.navigation = navigation;
 
 
 /***/ }),
-/* 116 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(0);
-class Rooms extends React.Component {
-    render() {
-        return (React.createElement("div", { className: "" }, "Rooms!!!!!!"));
+const SockJS = __webpack_require__(190);
+const Centrifuge = __webpack_require__(118);
+class CentrifugoService {
+    constructor() {
+        if (!window.config) {
+            return;
+        }
+        this.config = {
+            url: "http://localhost:8000/connection",
+            user: window.config.user.toString(),
+            timestamp: window.config.timestamp,
+            token: window.config.token,
+            sockJS: SockJS
+        };
+    }
+    getConfig() {
+        return this.config;
+    }
+    start() {
+        return new Centrifuge(this.config);
     }
 }
-exports.Rooms = Rooms;
+const centrifugoService = new CentrifugoService();
+exports.centrifugoService = centrifugoService;
 
 
 /***/ })
-],[46]);
+],[48]);

@@ -52,4 +52,4 @@ user = window.user;
 
 const userService = new UserService(user);
 
-export { userService, Roles };
+export { userService, Roles, User };

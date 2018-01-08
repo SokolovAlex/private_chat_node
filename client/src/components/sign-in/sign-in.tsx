@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { userService } from '../../services/user';
+import { userService, User, Roles } from '../../services/user';
 
 import './sign-in.less';
 
@@ -24,7 +24,7 @@ export class SignIn extends React.Component {
         :
         <nav className="nav nav-masthead">
             <div className="profile">
-                {user.name}
+                {user.name} {this.roleLabel(user)}
             </div>
             <a className="nav-link" href='/logout'>
                 <i className="fa fa-sign-out margin-x-xs"></i>
@@ -33,5 +33,16 @@ export class SignIn extends React.Component {
         </nav>;
 
         return content;
+    }
+
+    rolesLabels = {
+        [Roles.None]: "",
+        [Roles.Client]: "Client",
+        [Roles.Operator]: "Operator",
+    }
+
+    roleLabel(user: User) {
+        const label = this.rolesLabels[user.role];
+        return label ? `(${label})` : '';
     }
 }

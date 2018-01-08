@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const session = require('express-session');
+const Client = require("jscent");
 
 const boot = require('./boot');
 const config = require('./config');
@@ -29,7 +30,18 @@ authApi(app);
 app.use('/api', userApi());
 
 app.use('/', (req, res, next) => {
-    return res.render('main', { user: req.isAuthenticated() ? req.user : null });
+    let config = null;
+    if (req.isAuthenticated()) {
+        const timestamp = parseInt(new Date().getTime() / 1000).toString();
+        let token = new Client.Token("secret");
+        token = token.clientToken(req.user.id.toString(), timestamp, "");
+        config = { timestamp, token, user: req.user.id };
+    }
+
+    return res.render('main', {
+        user: req.isAuthenticated() ? req.user : null,
+        config
+    });
 });
 
 const port = config.port;
