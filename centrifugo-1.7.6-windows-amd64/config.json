@@ -1,3 +1,11 @@
 {
-  "secret": "secret"
+    "secret": "secret",
+    "namespaces": [{
+        "name": "private",
+        "publish": true,
+        "presence": true,
+        "join_leave": true,
+        "history_size": 10,
+        "history_lifetime": 30
+    }]
 }

@@ -16,9 +16,9 @@ https://fzambia.gitbooks.io/centrifugal/content/server/index.html
 https://centrifuge.readthedocs.io/en/latest/content/private_channels.html
 
 ## examples
-https://codepen.io/FZambia/full/aOYoEw
-http://jsfiddle.net/FZambia/yG7Uw/
 https://github.com/centrifugal/examples/tree/master/nodejs
+
+https://github.com/centrifugal/examples/tree/v0.1.0/jsfiddle
 
 ##
 cd ./centrifugo-...

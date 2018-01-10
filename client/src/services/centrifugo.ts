@@ -16,9 +16,11 @@ interface CentConfig {
 class CentrifugoService{
     config: CentConfig;
 
+    instance: any;
+
     constructor() {
        if (!window.config) {
-            return;
+          return;
        }
        
        this.config = {
@@ -35,7 +37,9 @@ class CentrifugoService{
     }
 
     start() {
-        return new Centrifuge(this.config);
+        this.instance = new Centrifuge(this.config);
+        this.instance.startAuthBatching();
+        return this.instance;
     }
 }
 

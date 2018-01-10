@@ -11,13 +11,12 @@ module.exports = (app) => {
 
     router.post('/role', function(req, res) {
         const body = req.body;
-
-        if (!body.userId || !body.roleId) {
-            return res.json({ error: true });
-        }
-
         const userId = body.userId;
         const roleId = body.roleId;
+
+        if (!userId || !roleId) {
+            return res.json({ error: true });
+        }
 
         User.update({ role: roleId }, { where: { id: userId } })
             .then((result) => {

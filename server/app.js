@@ -10,6 +10,7 @@ const boot = require('./boot');
 const config = require('./config');
 const authApi = require('./api/auth');
 const userApi = require('./api/user');
+const chatApi = require('./api/chat');
 const app = express();
 
 app.set('view engine', 'pug');
@@ -28,6 +29,7 @@ boot(app, passport);
 authApi(app);
 
 app.use('/api', userApi());
+app.use('/api/chat', chatApi());
 
 app.use('/', (req, res, next) => {
     let config = null;

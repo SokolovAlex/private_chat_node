@@ -24,8 +24,8 @@ export class SelectRole extends React.Component {
     render() {
         return (
             <div>
-                <h1>Салют!</h1>
-                <h3>Кем ты себя видишь, {user.name}?</h3>
+                <h1>Salut!</h1>
+                <h3>Select your role, {user.name}.</h3>
                <div className="row margin-top-sm select-role">
                     <div className="btn-group col-sm-11">
                         {
