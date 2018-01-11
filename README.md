@@ -1,21 +1,35 @@
 # private_chat_task
 
-- npm i
-- npm run build
+restore deps
+
+```javascript
+npm i
+```
+
+build frontend
+
+```javascript
+npm run build
+```
 
 in separate procceses
-start server
-- npm start
+- start server
 
+```javascript
+npm start
+```
+
+- start centrifugo
 Centrifugo should run on port 8000 with config centrifugo/config.json
 
-for example for win
-- cd centrifugo-1.7.6-windows-amd64/ & ./centrifugo.exe --config=config.json
+```javascript
+cd centrifugo-1.7.6-windows-amd64/ & ./centrifugo.exe --config=config.json
+```
 
-###chat backend
+### chat backend
 https://github.com/centrifugal/centrifugo
 
-###react starter kit
+### react starter kit
 https://github.com/alex3165/react-typescript-starter
 
 
@@ -24,7 +38,6 @@ https://libraries.io/npm/react-cent
 
 ### docs
 https://fzambia.gitbooks.io/centrifugal/content/server/index.html
-
 
 ### tool for sqllite
 http://sqlitebrowser.org/
