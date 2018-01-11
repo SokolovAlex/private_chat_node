@@ -1,10 +1,13 @@
 import axios from 'axios';
 
 const routes = {
-    saveRole: 'api/role',
-    sendMessage: 'api/chat/send',
-    getRooms: 'api/chat/rooms',
-    createRoom: 'api/chat/create'
+    saveRole: '/api/role',
+    sendMessage: '/api/chat/send',
+    getRooms: '/api/chat/rooms',
+    createRoom: '/api/chat/create',
+    joinRoom: '/api/chat/join',
+    leaveRoom: '/api/chat/leave',
+    thanks: '/api/chat/thanks'
 };
 
 class Api {
@@ -25,6 +28,21 @@ class Api {
 
     createRoom(userName: string, channel: string, userId: string) {
         return axios.post(routes.createRoom, { userName, channel, userId })
+            .catch(console.error);
+    }
+
+    join(userName: string, channel: string, userId: string) {
+        return axios.post(routes.joinRoom, { userName, channel, userId })
+            .catch(console.error);
+    }
+
+    leave(channel: string, userId: string) {
+        return axios.post(routes.leaveRoom, { channel, userId })
+            .catch(console.error);
+    }
+
+    thanks(channel: string, userId: string) {
+        return axios.post(routes.thanks, { channel, userId })
             .catch(console.error);
     }
 }

@@ -3,12 +3,11 @@ const Client = require("jscent");
 const _ = require("lodash");
 
 const db = require('../db');
-
 const router = express.Router();
 
-var centClient = new Client({ url: "http://localhost:8000", secret: "secret" });
+const centClient = new Client({ url: "http://localhost:8000", secret: "secret" });
 
-const rooms = [];
+let rooms = [];
 
 module.exports = (app) => {
 
@@ -45,12 +44,17 @@ module.exports = (app) => {
         const channel = body.channel;
         const userName = body.userName;
 
-        if (rooms.every(room => room.id !== channel)) {
+        const room = _.find(rooms, (chan) => {
+            return chan.id === channel;
+        });
+        if (!room) {
             rooms.push({
                 id: channel,
                 userId,
                 name: `chat with ${userName}`
             });
+        } else {
+            room.operator = null;
         }
 
         res.json({ error: false, rooms });
@@ -83,6 +87,60 @@ module.exports = (app) => {
         }, (err, response) => {
             res.json({ error: false, response });
         });
+    });
+
+    router.post('/leave', function(req, res) {
+        const body = req.body;
+
+        const userId = body.userId;
+        const channel = body.channel;
+
+        if (!userId || !channel) {
+            return res.json({ error: true });
+        }
+
+        const room = _.find(rooms, (chan) => {
+            return chan.id === channel;
+        });
+
+        if (!room) {
+            return res.json({ error: "no room" });
+        }
+
+        room.operator = null;
+
+        centClient.publish(channel, {
+            message: `See you.`,
+            author: userId
+        }, (err, response) => {
+            res.json({ error: false, response });
+        });
+    });
+
+    router.post('/thanks', function(req, res) {
+        const body = req.body;
+        const channel = body.channel;
+        const userId = body.userId;
+
+        if (!userId || !channel) {
+            return res.json({ error: true });
+        }
+
+        rooms = _.filter(rooms, (chan) => {
+            return chan.id === channel;
+        });
+
+        centClient.publish(channel, {
+            message: `Thanks. Goodbye.`,
+            author: userId
+        }, (err, response) => {
+            res.json({ error: false, response });
+        });
+    });
+
+    router.post('/clear', function(req, res) {
+        rooms = [];
+        res.json({ error: false });
     });
 
     return router;

@@ -20,16 +20,32 @@ class ChatState {
 
 export class Chat extends React.Component {
     channel: string;
+    centrifuge: any;
+    props: any;
     state: ChatState;
     subscription: any;
+    roomUserId: string;
+    isOperator: boolean;
+    operatorConnected: boolean;
     
     constructor(props: any) {
         super(props);
+
         this.state = {
             chatStarted: false,
             message: '',
             history: []
         };
+    }
+
+    componentDidMount() {
+        const roomUserId = this.props.match && this.props.match.params && this.props.match.params.room;
+
+        if (roomUserId) {
+            this.roomUserId = roomUserId;
+            this.isOperator = true;
+            this.start();
+        }
     }
 
     render() {
@@ -47,7 +63,7 @@ export class Chat extends React.Component {
     }
 
     handleMessageChange(e: any) {
-        this.setState({message: e.target.value});
+        this.setState({ message: e.target.value });
     }
 
     chat() {
@@ -60,7 +76,7 @@ export class Chat extends React.Component {
                             this.state.history.map((item, i) => {
                                 return (
                                     <div className="message" key={i}>
-                                        { item.message }
+                                        {item.author}: { item.message }
                                     </div>
                                 );
                             })
@@ -85,40 +101,36 @@ export class Chat extends React.Component {
     }
 
     start() {
-        this.channel = `private:user${user.id}`;
+        this.channel = `private:user${this.roomUserId || user.id}`;
 
         this.setState({chatStarted: true});
 
         var centrifuge = centrifugoService.start();
 
-        var public_callbacks = {
-            "leave": function(message: any) {
-                console.log('LEAVE: '+JSON.stringify(message));
-            },
-            "subscribe": function(context: any) {
-                console.log('SUBSCRIBE: '+JSON.stringify(context));
-            },
-            "error": function(errContext: any) {
-                console.log('ERROR: '+JSON.stringify(errContext));
-            },
-            "unsubscribe": function(context: any) {
-                console.log('UNSUBSCRIBE: '+JSON.stringify(context));
-            }
+        if (this.isOperator) {
+            api.join(user.name, this.channel, user.id);
+        } else {
+            api.createRoom(user.name, this.channel, user.id);
         }
 
-        this.subscription = centrifuge.subscribe(this.channel, public_callbacks);
+        this.subscription = centrifuge.subscribe(this.channel);
 
         this.subscription.on('message', this.receiveMessage.bind(this));
 
         this.subscription.on('join', this.join.bind(this));
 
+        if (!this.isOperator) {
+            this.subscription.on('leave', this.leave.bind(this));
+            this.subscription.on('unsubscribe', this.unsubscribe.bind(this));
+        }
+
         this.subscription.history().then((response: any) => {
-            if(response.data) {
-                const history = response.data.map((item: any) => {
+            if (response.data) {
+                const history = response.data.reverse().map((item: any) => {
                     return {
                         uid: item.uid,
                         message: item.data.message,
-                        author: item.data.author == user.id ? "you": "operator",
+                        author: item.data.author == user.id ? "you": userService.hasOppositeRoleLabel(),
                         inProcess: false,
                     };
                 });
@@ -127,21 +139,36 @@ export class Chat extends React.Component {
         });
 
         centrifuge.connect();
+
+        this.centrifuge = centrifuge;
     }
 
     join(response: any) {
-        if (response.data.user == user.id) {
-            api.createRoom(user.name, this.channel, user.id );
+        if (response.data.user != user.id && !this.operatorConnected) {
+            this.operatorConnected = true;
         }
+    }
+
+    leave(response: any) {
+        if (response.data && response.data.user != user.id && this.operatorConnected) {
+            api.leave(this.channel, response.data.user);
+            this.operatorConnected = false;
+        }
+    }
+
+    unsubscribe(response: any) {
+        api.thanks(this.channel, user.id);
     }
 
     receiveMessage(response: any) {
         const history = this.state.history;
-        history.push({ message: response.data.message, author: 'You', inProcess: false });
+        const author = response.data.author == user.id ? "you": userService.hasOppositeRoleLabel();
+        history.push({ message: response.data.message, author, inProcess: false });
         this.setState({ history });
     }
 
     close() {
-        this.setState({chatStarted: false});
+        this.setState({ chatStarted: false });
+        this.centrifuge.disconnect();
     }
 }

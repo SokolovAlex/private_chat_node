@@ -15,6 +15,11 @@ interface User {
     role: number;
 }
 
+const RoleLabels: object = {
+    [Roles.Client]: "Client",
+    [Roles.Operator]: "Operator"
+};
+
 declare global {
     interface Window { user: User; }
 }
@@ -42,6 +47,10 @@ class UserService{
         return this.user.role !== Roles.None;
     }
 
+    hasOppositeRoleLabel() {
+        return this.user.role === Roles.Client ? RoleLabels[Roles.Operator] : RoleLabels[Roles.Client];
+    }
+
     isAuthorized() {
         return !!this.user;
     }
@@ -52,4 +61,4 @@ user = window.user;
 
 const userService = new UserService(user);
 
-export { userService, Roles, User };
+export { userService, Roles, User, RoleLabels };

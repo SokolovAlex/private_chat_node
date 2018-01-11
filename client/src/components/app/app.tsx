@@ -33,7 +33,7 @@ export class App extends React.Component {
                   <div className="lead">
                     <Route exact path="/" component={Welcome} />
                     <Route path="/select-role" component={SelectRole} />
-                    <Route path="/chat" component={Chat} />
+                    <Route path="/chat/:room?" component={Chat} />
                     <Route path="/rooms" component={Rooms} />
                   </div>
                 </div>

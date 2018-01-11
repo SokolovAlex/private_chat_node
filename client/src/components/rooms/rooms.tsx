@@ -17,6 +17,7 @@ class RoomsState {
 
 export class Rooms extends React.Component {
     state: RoomsState;
+    timeoutId: number;
 
     constructor(props: any) {
         super(props);
@@ -55,11 +56,12 @@ export class Rooms extends React.Component {
                 }/>
             );
         }
-        return <div className="margin-x-sm">Operator -{room.operator}</div>;
+        return <div className="margin-x-sm">In dialog with operator {room.operator}</div>;
     }
 
     join(room: Room, history: any) {
-        history.push('/chat');
+        clearInterval(this.timeoutId);
+        history.push(`/chat/${room.userId}`);
     }
 
     getRooms() {
@@ -76,7 +78,7 @@ export class Rooms extends React.Component {
                 this.setState({
                     rooms
                 });
-                setTimeout(this.getRooms.bind(this), 10 * 1000);
+                this.timeoutId = setTimeout(this.getRooms.bind(this), 10 * 1000);
             }
         });
     }
