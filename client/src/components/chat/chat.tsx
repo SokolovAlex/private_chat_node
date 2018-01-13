@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { userService } from '../../services/user';
+import { userService, User } from '../../services/user';
 import { api } from '../../services/api';
 import { centrifugoService } from '../../services/centrifugo';
 
-const user = userService.getUser();
+let user: User;
 
 class Message {
     message: string;
@@ -36,6 +36,8 @@ export class Chat extends React.Component {
             message: '',
             history: []
         };
+
+        user = userService.getUser();
     }
 
     componentDidMount() {

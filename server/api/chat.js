@@ -127,7 +127,7 @@ module.exports = (app) => {
         }
 
         rooms = _.filter(rooms, (chan) => {
-            return chan.id === channel;
+            return chan.id !== channel;
         });
 
         centClient.publish(channel, {
@@ -138,7 +138,7 @@ module.exports = (app) => {
         });
     });
 
-    router.post('/clear', function(req, res) {
+    router.get('/clear', function(req, res) {
         rooms = [];
         res.json({ error: false });
     });

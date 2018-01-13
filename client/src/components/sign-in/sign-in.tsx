@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { userService, User, Roles } from '../../services/user';
+import { Route } from 'react-router-dom'
+
+import { userService, User, RoleLabels } from '../../services/user';
 
 import './sign-in.less';
 
@@ -16,10 +18,12 @@ export class SignIn extends React.Component {
                     <i className="fa fa-vk margin-x-xs"></i>
                     vk
                 </a>
-                <a className="nav-link" href='#'>
-                    <i className="fa fa-user-circle-o margin-x-xs"></i>
-                    guest
-                </a>
+                <Route render={({ history}) => (
+                    <a className="nav-link" href='#' onClick={this.guestEnter.bind(this, history)}>
+                        <i className="fa fa-user-circle-o margin-x-xs"></i>
+                        guest
+                    </a>
+                )} />
              </nav>
         :
         <nav className="nav nav-masthead">
@@ -35,14 +39,13 @@ export class SignIn extends React.Component {
         return content;
     }
 
-    rolesLabels = {
-        [Roles.None]: "",
-        [Roles.Client]: "Client",
-        [Roles.Operator]: "Operator",
+    guestEnter(history: any) {
+        userService.createAnonimus();
+        history.push('/select-role')
     }
 
     roleLabel(user: User) {
-        const label = this.rolesLabels[user.role];
+        const label = RoleLabels[user.role];
         return label ? `(${label})` : '';
     }
 }

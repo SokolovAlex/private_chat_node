@@ -1,4 +1,4 @@
-# private_chat_task
+# private chat on node + react + centrifugo
 
 restore deps
 
@@ -22,8 +22,9 @@ npm start
 - start centrifugo
 Centrifugo should run on port 8000 with config centrifugo/config.json
 
+win example
 ```javascript
-cd centrifugo-1.7.6-windows-amd64/ & ./centrifugo.exe --config=config.json
+cd centrifugo/ & ./centrifugo.exe --config=config.json
 ```
 
 ### chat backend

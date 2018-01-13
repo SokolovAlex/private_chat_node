@@ -16,11 +16,10 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', './public/views')
 
+app.use(express.static(__dirname + '/../public'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(session({ secret: 'SECRET' }));
-app.use(express.static(__dirname + '/../public'));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -32,13 +31,11 @@ app.use('/api', userApi());
 app.use('/api/chat', chatApi());
 
 app.use('/', (req, res, next) => {
-    let config = null;
-    if (req.isAuthenticated()) {
-        const timestamp = parseInt(new Date().getTime() / 1000).toString();
-        let token = new Client.Token("secret");
-        token = token.clientToken(req.user.id.toString(), timestamp, "");
-        config = { timestamp, token, user: req.user.id };
-    }
+    const timestamp = parseInt(new Date().getTime() / 1000).toString();
+    const userId = req.isAuthenticated() ? req.user.id.toString() : timestamp.toString();
+    let token = new Client.Token("secret");
+    token = token.clientToken(userId, timestamp, "");
+    const config = { timestamp, token, user: userId };
 
     return res.render('main', {
         user: req.isAuthenticated() ? req.user : null,

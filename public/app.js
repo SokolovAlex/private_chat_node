@@ -14,62 +14,7 @@ webpackJsonp([0],[
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const api_1 = __webpack_require__(38);
-var Roles;
-(function (Roles) {
-    Roles[Roles["None"] = 0] = "None";
-    Roles[Roles["Client"] = 1] = "Client";
-    Roles[Roles["Operator"] = 2] = "Operator";
-})(Roles || (Roles = {}));
-exports.Roles = Roles;
-const RoleLabels = {
-    [Roles.Client]: "Client",
-    [Roles.Operator]: "Operator"
-};
-exports.RoleLabels = RoleLabels;
-class UserService {
-    constructor(user) {
-        this.setUser(user);
-    }
-    setUser(user) {
-        this.user = user;
-    }
-    getUser() {
-        return this.user;
-    }
-    saveRole(roleId) {
-        return api_1.api.saveRole(roleId, this.user.id);
-    }
-    hasRole() {
-        return this.user.role !== Roles.None;
-    }
-    hasOppositeRoleLabel() {
-        return this.user.role === Roles.Client ? RoleLabels[Roles.Operator] : RoleLabels[Roles.Client];
-    }
-    isAuthorized() {
-        return !!this.user;
-    }
-}
-user = window.user;
-const userService = new UserService(user);
-exports.userService = userService;
-
-
-/***/ }),
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -128,6 +73,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
+/* 16 */,
+/* 17 */,
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const api_1 = __webpack_require__(38);
+const centrifugo_1 = __webpack_require__(147);
+var Roles;
+(function (Roles) {
+    Roles[Roles["None"] = 0] = "None";
+    Roles[Roles["Client"] = 1] = "Client";
+    Roles[Roles["Operator"] = 2] = "Operator";
+})(Roles || (Roles = {}));
+exports.Roles = Roles;
+const RoleLabels = {
+    [Roles.None]: "",
+    [Roles.Client]: "Client",
+    [Roles.Operator]: "Operator"
+};
+exports.RoleLabels = RoleLabels;
+class UserService {
+    constructor(user) {
+        this.setUser(user);
+    }
+    setUser(user) {
+        return this.user = user;
+    }
+    getUser() {
+        return this.user;
+    }
+    createAnonimus() {
+        const config = centrifugo_1.centrifugoService.getConfig();
+        const guestId = config.user;
+        return this.setUser({
+            name: `Anonimus ${guestId}`,
+            id: guestId,
+            role: Roles.None,
+            isGuest: true
+        });
+    }
+    saveRole(roleId) {
+        this.user.role = roleId;
+        if (this.user.isGuest) {
+            return Promise.resolve();
+        }
+        return api_1.api.saveRole(roleId, this.user.id);
+    }
+    hasRole() {
+        return this.user.role !== Roles.None;
+    }
+    hasOppositeRoleLabel() {
+        return this.user.role === Roles.Client ? RoleLabels[Roles.Operator] : RoleLabels[Roles.Client];
+    }
+    isAuthorized() {
+        return !!this.user;
+    }
+}
+user = window.user;
+const userService = new UserService(user);
+exports.userService = userService;
+
+
+/***/ }),
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
 /* 24 */,
 /* 25 */,
 /* 26 */,
@@ -885,7 +901,7 @@ Link.contextTypes = {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
 const ReactDOM = __webpack_require__(47);
-const react_router_dom_1 = __webpack_require__(23);
+const react_router_dom_1 = __webpack_require__(15);
 const app_1 = __webpack_require__(118);
 ReactDOM.render((React.createElement(react_router_dom_1.BrowserRouter, null,
     React.createElement(app_1.App, null))), document.getElementById('content'));
@@ -996,7 +1012,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(33);
 
-var _PathUtils = __webpack_require__(15);
+var _PathUtils = __webpack_require__(16);
 
 var _createTransitionManager = __webpack_require__(34);
 
@@ -1373,7 +1389,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(33);
 
-var _PathUtils = __webpack_require__(15);
+var _PathUtils = __webpack_require__(16);
 
 var _createTransitionManager = __webpack_require__(34);
 
@@ -1856,8 +1872,8 @@ NavLink.defaultProps = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
-const react_router_dom_1 = __webpack_require__(23);
-const user_1 = __webpack_require__(17);
+const react_router_dom_1 = __webpack_require__(15);
+const user_1 = __webpack_require__(18);
 const navigation_1 = __webpack_require__(136);
 const footer_1 = __webpack_require__(137);
 const sign_in_1 = __webpack_require__(138);
@@ -1912,7 +1928,7 @@ exports.App = App;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_1 = __webpack_require__(17);
+const user_1 = __webpack_require__(18);
 const routes = {
     welcome: '/',
     selectRole: '/select-role',
@@ -1965,17 +1981,10 @@ exports.Footer = Footer;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
-const user_1 = __webpack_require__(17);
+const react_router_dom_1 = __webpack_require__(15);
+const user_1 = __webpack_require__(18);
 __webpack_require__(139);
 class SignIn extends React.Component {
-    constructor() {
-        super(...arguments);
-        this.rolesLabels = {
-            [user_1.Roles.None]: "",
-            [user_1.Roles.Client]: "Client",
-            [user_1.Roles.Operator]: "Operator",
-        };
-    }
     render() {
         const user = user_1.userService.getUser();
         let content = !user ?
@@ -1986,9 +1995,9 @@ class SignIn extends React.Component {
                 React.createElement("a", { className: "nav-link", href: '/auth/vkontakte' },
                     React.createElement("i", { className: "fa fa-vk margin-x-xs" }),
                     "vk"),
-                React.createElement("a", { className: "nav-link", href: '#' },
-                    React.createElement("i", { className: "fa fa-user-circle-o margin-x-xs" }),
-                    "guest"))
+                React.createElement(react_router_dom_1.Route, { render: ({ history }) => (React.createElement("a", { className: "nav-link", href: '#', onClick: this.guestEnter.bind(this, history) },
+                        React.createElement("i", { className: "fa fa-user-circle-o margin-x-xs" }),
+                        "guest")) }))
             :
                 React.createElement("nav", { className: "nav nav-masthead" },
                     React.createElement("div", { className: "profile" },
@@ -2000,8 +2009,12 @@ class SignIn extends React.Component {
                         "sign out"));
         return content;
     }
+    guestEnter(history) {
+        user_1.userService.createAnonimus();
+        history.push('/select-role');
+    }
     roleLabel(user) {
-        const label = this.rolesLabels[user.role];
+        const label = user_1.RoleLabels[user.role];
         return label ? `(${label})` : '';
     }
 }
@@ -2156,10 +2169,9 @@ module.exports = function (css) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
-const react_router_dom_1 = __webpack_require__(23);
-const user_1 = __webpack_require__(17);
+const react_router_dom_1 = __webpack_require__(15);
+const user_1 = __webpack_require__(18);
 __webpack_require__(143);
-const user = user_1.userService.getUser();
 class SelectRole extends React.Component {
     constructor() {
         super(...arguments);
@@ -2176,6 +2188,7 @@ class SelectRole extends React.Component {
         ];
     }
     render() {
+        const user = user_1.userService.getUser();
         return (React.createElement("div", null,
             React.createElement("h1", null, "Salut!"),
             React.createElement("h3", null,
@@ -2186,9 +2199,9 @@ class SelectRole extends React.Component {
                 React.createElement("div", { className: "btn-group col-sm-11" }, this.roles.map(role => {
                     let selectedClass = this.selected === role.id ? 'selected-role' : '';
                     selectedClass += " btn btn-secondary";
-                    return React.createElement("button", { key: role.id, className: selectedClass, onClick: this.selectRole.bind(this, role.id) },
+                    return (React.createElement("button", { key: role.id, className: selectedClass, onClick: this.selectRole.bind(this, role.id) },
                         role.text,
-                        this.check(role.id));
+                        this.check(role.id)));
                 })),
                 React.createElement("div", { className: "col-sm-1" },
                     React.createElement(react_router_dom_1.Route, { render: ({ history }) => (React.createElement("i", { className: "submit-role fa fa-arrow-right fa-2x", onClick: this.saveRole.bind(this, history) })) })))));
@@ -2281,10 +2294,10 @@ exports.Welcome = Welcome;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
-const user_1 = __webpack_require__(17);
+const user_1 = __webpack_require__(18);
 const api_1 = __webpack_require__(38);
 const centrifugo_1 = __webpack_require__(147);
-const user = user_1.userService.getUser();
+let user;
 class Message {
 }
 class ChatState {
@@ -2297,6 +2310,7 @@ class Chat extends React.Component {
             message: '',
             history: []
         };
+        user = user_1.userService.getUser();
     }
     componentDidMount() {
         const roomUserId = this.props.match && this.props.match.params && this.props.match.params.room;
@@ -2480,7 +2494,7 @@ exports.centrifugoService = centrifugoService;
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(2);
 const api_1 = __webpack_require__(38);
-const react_router_dom_1 = __webpack_require__(23);
+const react_router_dom_1 = __webpack_require__(15);
 __webpack_require__(183);
 class Room {
 }

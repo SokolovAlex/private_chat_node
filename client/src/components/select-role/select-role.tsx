@@ -5,8 +5,6 @@ import { userService, Roles } from '../../services/user';
 
 import './select-role.less';
 
-const user = userService.getUser();
-
 export class SelectRole extends React.Component {
     selected: number = Roles.Client;
 
@@ -22,20 +20,22 @@ export class SelectRole extends React.Component {
     ];
 
     render() {
+        const user = userService.getUser();
         return (
             <div>
                 <h1>Salut!</h1>
                 <h3>Select your role, {user.name}.</h3>
-               <div className="row margin-top-sm select-role">
+                <div className="row margin-top-sm select-role">
                     <div className="btn-group col-sm-11">
                         {
                             this.roles.map(role => {
                                 let selectedClass = this.selected === role.id ? 'selected-role' : '';
                                 selectedClass += " btn btn-secondary"
-                                return <button key={role.id} className={selectedClass} onClick={this.selectRole.bind(this, role.id)}>
-                                    { role.text }
-                                    { this.check(role.id) }
-                                </button>;
+                                return (
+                                    <button key={role.id} className={selectedClass} onClick={this.selectRole.bind(this, role.id)}>
+                                            { role.text }
+                                            { this.check(role.id) }
+                                    </button>);
                             })
                         }
                     </div>

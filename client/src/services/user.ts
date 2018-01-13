@@ -1,4 +1,5 @@
 import { api } from './api';
+import { centrifugoService } from './centrifugo';
 
 enum Roles {
     None = 0,
@@ -8,14 +9,16 @@ enum Roles {
 
 interface User {
     name: string;
-    avatar: string;
-    createdAt: string;
-    email: string;
+    avatar?: string;
+    createdAt?: string;
+    email?: string;
     id: string;
     role: number;
+    isGuest: boolean;
 }
 
 const RoleLabels: object = {
+    [Roles.None]: "",
     [Roles.Client]: "Client",
     [Roles.Operator]: "Operator"
 };
@@ -31,15 +34,30 @@ class UserService{
         this.setUser(user);
     }
 
-    setUser(user: User) {
-        this.user = user
+    setUser(user: User): User {
+        return this.user = user;
     }
 
     getUser(): User {
         return this.user;
     }
 
-    saveRole(roleId: number) {
+    createAnonimus(): User {
+        const config = centrifugoService.getConfig();
+        const guestId = config.user;
+        return this.setUser({
+            name: `Anonimus ${guestId}`,
+            id: guestId,
+            role: Roles.None,
+            isGuest: true
+        });
+    }
+
+    saveRole(roleId: number): any {
+        this.user.role = roleId;
+        if (this.user.isGuest) {
+            return Promise.resolve();
+        }
         return api.saveRole(roleId, this.user.id);
     }
 
