@@ -25,6 +25,7 @@
         "gulp": "^3.9.1",
         "jscent": "^0.1.2",
         "lodash": "^4.17.4",
+        "moment": "^2.20.1",
         "passport": "^0.4.0",
         "passport-google-oauth": "^1.0.0",
         "passport-vkontakte": "^0.3.2",

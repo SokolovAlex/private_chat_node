@@ -1,6 +1,7 @@
 const express = require('express');
 const Client = require("jscent");
 const _ = require("lodash");
+const moment = require("moment");
 
 const db = require('../db');
 const router = express.Router();
@@ -8,6 +9,14 @@ const router = express.Router();
 const centClient = new Client({ url: "http://localhost:8000", secret: "secret" });
 
 let rooms = [];
+
+class Message {
+    constructor(message, authorId) {
+        this.time = moment().format('LT');
+        this.message = message;
+        this.author = authorId;
+    }
+}
 
 module.exports = (app) => {
 
@@ -25,15 +34,12 @@ module.exports = (app) => {
             return res.json({ error: true });
         }
 
-        centClient.publish(channel, { message, author: userId }, (err, response) => {
+        centClient.publish(channel, new Message(message, userId), (err, response) => {
             res.json({ error: false, response });
         });
     });
 
     router.get('/rooms', function(req, res) {
-        // centClient.channels((err, resp) => {
-        //     console.log(resp);
-        // })
         res.json({ rooms });
     });
 
@@ -81,12 +87,10 @@ module.exports = (app) => {
 
         room.operator = userName;
 
-        centClient.publish(channel, {
-            message: `Hello. I'm ${userName}. Can i help you?`,
-            author: userId
-        }, (err, response) => {
-            res.json({ error: false, response });
-        });
+        centClient.publish(channel, new Message(`Hello. I'm ${userName}. Can i help you?`, userId),
+            (err, response) => {
+                res.json({ error: false, response });
+            });
     });
 
     router.post('/leave', function(req, res) {
@@ -109,10 +113,7 @@ module.exports = (app) => {
 
         room.operator = null;
 
-        centClient.publish(channel, {
-            message: `See you.`,
-            author: userId
-        }, (err, response) => {
+        centClient.publish(channel, new Message(`See you.`, userId), (err, response) => {
             res.json({ error: false, response });
         });
     });
@@ -130,10 +131,7 @@ module.exports = (app) => {
             return chan.id !== channel;
         });
 
-        centClient.publish(channel, {
-            message: `Thanks. Goodbye.`,
-            author: userId
-        }, (err, response) => {
+        centClient.publish(channel, new Message(`Thanks. Goodbye.`, userId), (err, response) => {
             res.json({ error: false, response });
         });
     });

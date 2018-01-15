@@ -6,7 +6,7 @@ const Roles = require('./Roles');
 let db = null;
 
 const init = () => {
-    db = new Sequelize(config.name, config.user, config.password, config.options);
+    db = new Sequelize(config.name, null, null, config.options);
 
     db.authenticate()
         .then(() => {

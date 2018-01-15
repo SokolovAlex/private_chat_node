@@ -16,10 +16,10 @@ module.exports = {
         }
     },
     db: {
+        name: 'chat-sqllite',
         options: {
             host: "localhost",
             dialect: "sqlite",
-            name: "chat",
             logging: false,
             storage: "./chat.sqlite"
         }

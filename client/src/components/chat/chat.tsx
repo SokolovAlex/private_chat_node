@@ -7,12 +7,15 @@ import { centrifugoService } from '../../services/centrifugo';
 let user: User;
 
 class Message {
+    isMine: boolean;
+    created: string;
     message: string;
     author: string;
     inProcess: boolean;
 }
 
 class ChatState {
+    chatName: string;
     chatStarted: boolean;
     message: string;
     history: Message[];
@@ -32,6 +35,7 @@ export class Chat extends React.Component {
         super(props);
 
         this.state = {
+            chatName: 'Chat',
             chatStarted: false,
             message: '',
             history: []
@@ -105,15 +109,15 @@ export class Chat extends React.Component {
     start() {
         this.channel = `private:user${this.roomUserId || user.id}`;
 
-        this.setState({chatStarted: true});
-
-        var centrifuge = centrifugoService.start();
+        const centrifuge = centrifugoService.start();
 
         if (this.isOperator) {
             api.join(user.name, this.channel, user.id);
         } else {
             api.createRoom(user.name, this.channel, user.id);
         }
+
+        this.setState({ chatStarted: true });
 
         this.subscription = centrifuge.subscribe(this.channel);
 
@@ -129,11 +133,14 @@ export class Chat extends React.Component {
         this.subscription.history().then((response: any) => {
             if (response.data) {
                 const history = response.data.reverse().map((item: any) => {
+                    const isMine = item.data.author == user.id;
                     return {
                         uid: item.uid,
                         message: item.data.message,
-                        author: item.data.author == user.id ? "you": userService.hasOppositeRoleLabel(),
+                        isMine,
+                        author: isMine ? "you": userService.hasOppositeRoleLabel(),
                         inProcess: false,
+                        created: item.data.created
                     };
                 });
                 this.setState({ history });
@@ -163,9 +170,14 @@ export class Chat extends React.Component {
     }
 
     receiveMessage(response: any) {
+        if (!response.data) {
+            return;
+        }
         const history = this.state.history;
-        const author = response.data.author == user.id ? "you": userService.hasOppositeRoleLabel();
-        history.push({ message: response.data.message, author, inProcess: false });
+        const data = response.data;
+        const isMine = data.author == user.id;
+        const author = isMine ? "you": userService.hasOppositeRoleLabel();
+        history.push({ message: data.message, author, inProcess: false, isMine, created: data.created });
         this.setState({ history });
     }
 
